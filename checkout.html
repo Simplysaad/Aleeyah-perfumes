@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfume Bliss - Checkout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Perfume Bliss</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html"><i class="bi bi-cart"></i> Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container py-5">
+    <h1 class="mb-4">Checkout</h1>
+    <form id="checkoutForm" novalidate>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h4>Billing Information</h4>
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Full Name *</label>
+            <input type="text" class="form-control" id="fullName" required />
+            <div class="invalid-feedback">Please enter your full name.</div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address *</label>
+            <input type="email" class="form-control" id="email" required />
+            <div class="invalid-feedback">Please enter a valid email address.</div>
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address *</label>
+            <input type="text" class="form-control" id="address" required />
+            <div class="invalid-feedback">Please enter your address.</div>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">City *</label>
+            <input type="text" class="form-control" id="city" required />
+            <div class="invalid-feedback">Please enter your city.</div>
+          </div>
+          <div class="mb-3">
+            <label for="postalCode" class="form-label">Postal Code *</label>
+            <input type="text" class="form-control" id="postalCode" required />
+            <div class="invalid-feedback">Please enter your postal code.</div>
+          </div>
+          <div class="mb-3">
+            <label for="country" class="form-label">Country *</label>
+            <input type="text" class="form-control" id="country" required />
+            <div class="invalid-feedback">Please enter your country.</div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <h4>Payment Information</h4>
+          <div class="mb-3">
+            <label for="cardName" class="form-label">Name on Card *</label>
+            <input type="text" class="form-control" id="cardName" required />
+            <div class="invalid-feedback">Please enter the name on your card.</div>
+          </div>
+          <div class="mb-3">
+            <label for="cardNumber" class="form-label">Card Number *</label>
+            <input type="text" class="form-control" id="cardNumber" maxlength="19" required />
+            <div class="invalid-feedback">Please enter a valid card number.</div>
+          </div>
+          <div class="row">
+            <div class="col-6 mb-3">
+              <label for="expiryDate" class="form-label">Expiry Date *</label>
+              <input type="month" class="form-control" id="expiryDate" required />
+              <div class="invalid-feedback">Please enter the expiry date.</div>
+            </div>
+            <div class="col-6 mb-3">
+              <label for="cvv" class="form-label">CVV *</label>
+              <input type="text" class="form-control" id="cvv" maxlength="4" required />
+              <div class="invalid-feedback">Please enter the CVV.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button type="submit" class="btn btn-success btn-lg">Place Order</button>
+      </div>
+    </form>
+  </section>
+
+  <footer class="bg-dark text-white text-center py-4 mt-auto">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Perfume Bliss. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Basic form validation
+    (() => {
+      'use strict';
+      const form = document.getElementById('checkoutForm');
+      form.addEventListener('submit', e => {
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          e.stopPropagation();
+        } else {
+          e.preventDefault();
+          alert('Thank you for your order! We will process it shortly.');
+          localStorage.removeItem('cart'); // Clear cart after order
+          window.location.href = 'index.html';
+        }
+        form.classList.add('was-validated');
+      });
+    })();
+  </script>
+</body>
+</html>

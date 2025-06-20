@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Floral Essence - Aleeyah Perfumes</title>
+        <link rel="stylesheet" href="./CSS/styles.css" />
+    </head>
+    <body>
+        <header class="header">
+            <h1>Aleeyah Perfumes</h1>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="#details">Details</a>
+                <a href="cart.html">Cart</a>
+            </nav>
+        </header>
+
+        <main class="product-preview">
+            <section class="product-gallery">
+                <img
+                    src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80"
+                    alt="Floral Essence perfume bottle"
+                />
+                <div class="thumbnail-row">
+                    <img
+                        src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=150&q=80"
+                        alt="Floral Essence bottle side"
+                    />
+                    <img
+                        src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=150&q=80"
+                        alt="Floral Essence close-up"
+                    />
+                </div>
+            </section>
+
+            <section class="product-details" id="details">
+                <h2>Floral Essence</h2>
+                <p class="price">$45.00</p>
+                <p>
+                    A delicate blend of jasmine and rose, handcrafted to evoke
+                    elegance and freshness.
+                </p>
+
+                <div class="product-options">
+                    <label for="size">Size:</label>
+                    <select id="size" name="size">
+                        <option value="30ml">30ml</option>
+                        <option value="50ml" selected>50ml</option>
+                        <option value="100ml">100ml</option>
+                    </select>
+                </div>
+
+                <button id="addToCartBtn">Add to Cart</button>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Aleeyah Perfumes. All rights reserved.</p>
+        </footer>
+
+        <script src="./JS/product.js"></script>
+    </body>
+</html>

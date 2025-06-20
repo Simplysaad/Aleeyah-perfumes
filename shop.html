@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfume Bliss - Shop</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Perfume Bliss</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="shop.html">Shop</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html"><i class="bi bi-cart"></i> Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Shop Header -->
+  <section class="py-4 bg-light">
+    <div class="container">
+      <h1 class="mb-0">Shop Perfumes</h1>
+      <p class="text-muted">Explore our exclusive collection of perfumes.</p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="container my-4">
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <h5>Filter by Category</h5>
+        <select id="categoryFilter" class="form-select" aria-label="Filter perfumes by category">
+          <option value="all" selected>All</option>
+          <option value="floral">Floral</option>
+          <option value="fresh">Fresh</option>
+          <option value="warm">Warm</option>
+          <option value="citrus">Citrus</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section class="container mb-5">
+    <div class="row g-4" id="productsGrid">
+      <!-- Product cards will be injected here by JS -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4 mt-auto">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Perfume Bliss. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/scripts.js"></script>
+  <script>
+    // Sample product data
+    const products = [
+      {
+        id: 1,
+        name: "Floral Essence",
+        category: "floral",
+        price: 45.00,
+        description: "A delicate blend of jasmine and rose petals.",
+        image: "assets/images/perfume1.jpg"
+      },
+      {
+        id: 2,
+        name: "Ocean Breeze",
+        category: "fresh",
+        price: 50.00,
+        description: "Fresh and invigorating with sea salt notes.",
+        image: "assets/images/perfume2.jpg"
+      },
+      {
+        id: 3,
+        name: "Mystic Amber",
+        category: "warm",
+        price: 55.00,
+        description: "Warm amber with hints of vanilla and spice.",
+        image: "assets/images/perfume3.jpg"
+      },
+      {
+        id: 4,
+        name: "Citrus Burst",
+        category: "citrus",
+        price: 40.00,
+        description: "Zesty and refreshing with orange and lemon notes.",
+        image: "assets/images/perfume4.jpg"
+      },
+      {
+        id: 5,
+        name: "Rose Garden",
+        category: "floral",
+        price: 48.00,
+        description: "Romantic scent with rich rose and peony.",
+        image: "assets/images/perfume5.jpg"
+      },
+      {
+        id: 6,
+        name: "Fresh Meadow",
+        category: "fresh",
+        price: 52.00,
+        description: "Crisp green notes with a hint of morning dew.",
+        image: "assets/images/perfume6.jpg"
+      }
+    ];
+
+    const productsGrid = document.getElementById('productsGrid');
+    const categoryFilter = document.getElementById('categoryFilter');
+
+    // Function to render products based on filter
+    function renderProducts(filterCategory = 'all') {
+      productsGrid.innerHTML = '';
+
+      const filteredProducts = filterCategory === 'all' 
+        ? products 
+        : products.filter(p => p.category === filterCategory);
+
+      if (filteredProducts.length === 0) {
+        productsGrid.innerHTML = '<p class="text-center">No products found in this category.</p>';
+        return;
+      }
+
+      filteredProducts.forEach(product => {
+        const col = document.createElement('div');
+        col.className = 'col-sm-6 col-md-4';
+
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="${product.image}" class="card-img-top" alt="${product.name}" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text text-muted flex-grow-1">${product.description}</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fs-5 fw-bold">$${product.price.toFixed(2)}</span>
+                <a href="product.html?id=${product.id}" class="btn btn-outline-primary btn-sm">View Details</a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        productsGrid.appendChild(col);
+      });
+    }
+
+    // Initial render
+    renderProducts();
+
+    // Filter change event
+    categoryFilter.addEventListener('change', (e) => {
+      renderProducts(e.target.value);
+    });
+  </script>
+</body>
+</html>
